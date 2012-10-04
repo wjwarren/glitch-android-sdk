@@ -2,9 +2,6 @@ package com.tinyspeck.android;
 
 import android.os.AsyncTask;
 import android.util.Log;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.json.JSONTokener;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -33,16 +30,11 @@ public class GlitchAsyncTask extends AsyncTask<String, Void, Object> {
 
             Log.i("vetal", result);
 
-            JSONTokener tokener = new JSONTokener(result);
-            JSONObject jObject = new JSONObject(tokener);
-
-            return jObject;
+            return result;
 
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
             e.printStackTrace();
         }
 
@@ -60,9 +52,9 @@ public class GlitchAsyncTask extends AsyncTask<String, Void, Object> {
     }
 
     protected void onPostExecute(Object result) {
-        if (delegate != null && result != null && result.getClass() == JSONObject.class)
+        if (delegate != null && result != null && result.getClass() == String.class)
         {
-        	request.response = (JSONObject)result;
+        	request.response = (String) result;
         	delegate.requestFinished(request);
         }
         else

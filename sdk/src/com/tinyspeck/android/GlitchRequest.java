@@ -4,8 +4,6 @@ package com.tinyspeck.android;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.json.JSONObject;
-
 public class GlitchRequest {
 	
 	//// Strings and objects used for authentication and requests ////
@@ -16,7 +14,7 @@ public class GlitchRequest {
 	public String method; // Specific method without 'simple', e.g. "players.info"
 	public Map<String,String> params; // Dictionary of parameters passed in the request
 	public GlitchRequestDelegate delegate; // Handler that will be called when events occur before, during, and after the request
-	public JSONObject response; // JSON response object
+	public String response; // JSON response as plain String.
 	
     private GlitchAsyncTask task; // Async task that interacts with API
     private Glitch glitch; // Glitch parent
